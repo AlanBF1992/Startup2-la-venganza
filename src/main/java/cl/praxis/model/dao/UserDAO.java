@@ -54,6 +54,12 @@ public class UserDAO {
 		return usuario;
 	}
 	
+	public User read(String correo) {		
+		List<User> usuarios = read();
+		User usuario = usuarios.stream().filter(x -> x.getCorreo().equalsIgnoreCase(correo)).findAny().orElse(null);
+		return usuario;
+	}
+	
 	public List<User> read() {
 		List<User> usuarios = new ArrayList<User>();
 		
@@ -120,5 +126,4 @@ public class UserDAO {
 			ex.printStackTrace();
 		}
 	}
-	
 }

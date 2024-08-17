@@ -15,6 +15,37 @@
 		<p>Tu correo es <c:out value="${usermail}"></c:out></p>
 		<a class="btn btn-primary" href="login?logoff=1">Logoff</a>
 	</section>
+	<section>
+		<h1>Vehículos</h1>
+		<c:choose>
+			<c:when test="${autorizado == true}">
+				<table class="table" id="tblProveedor">
+					<thead>
+						<tr>
+							<th scope="col" class="table-dark">Id</th>
+							<th scope="col" class="table-dark">Nombre Trabajador</th>
+							<th scope="col" class="table-dark">Nombre Vehículo</th>
+							<th scope="col" class="table-dark">Numeración</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="v" items="${vehiculos}">
+							<tr>
+					            <td scope="row"><c:out value="${v.getId()}"></c:out></td>
+					            <td><c:out value="${v.getUser()}"></c:out></td>
+					            <td><c:out value="${v.getNombre()}"></c:out></td>
+					            <td><c:out value="${v.getNumeracion()}"></c:out></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</c:when>
+			<c:otherwise>
+				<p>No está autorizado a ver los vehículos</p>
+			</c:otherwise>
+		</c:choose>
+		
+	</section>
 </main>
 <script
  src="https://code.jquery.com/jquery-3.7.1.min.js"
